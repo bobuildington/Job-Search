@@ -3,7 +3,7 @@
 A simple job application tracker. Add each role you apply for, keep its
 status up to date, and see at a glance what needs a follow-up.
 
-Live at: https://bobuildington.github.io/jobsearch/
+Live at: https://bobuildington.github.io/JobSearch/
 
 ## What it does
 
