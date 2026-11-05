@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="description" content="Track your job applications — company, role, status, and follow-ups. Your data stays in this browser.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <title>Job Tracker</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <h1>Job Tracker</h1>
+      <p class="sub">Your applications, in one place. Data stays in this browser.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="stats" id="stats" aria-label="Summary"></section>
+
+    <section class="panel">
+      <button class="btn primary big" id="showFormBtn" type="button">+ Add application</button>
+
+      <form id="appForm" class="appform" hidden>
+        <h2 id="formTitle">Add application</h2>
+        <div class="grid">
+          <label>Company *
+            <input id="f-company" type="text" required maxlength="80" autocomplete="off" placeholder="e.g. TELUS Digital">
+          </label>
+          <label>Job title *
+            <input id="f-title" type="text" required maxlength="120" autocomplete="off" placeholder="e.g. AI Data Annotator">
+          </label>
+          <label>Platform / source
+            <input id="f-platform" type="text" maxlength="60" list="platforms" autocomplete="off" placeholder="e.g. Clickworker">
+            <datalist id="platforms">
+              <option value="TELUS Digital"></option>
+              <option value="Clickworker"></option>
+              <option value="Prolific"></option>
+              <option value="Appen / CrowdGen"></option>
+              <option value="OneForma"></option>
+              <option value="Indeed"></option>
+              <option value="LinkedIn"></option>
+              <option value="Company website"></option>
+              <option value="Other"></option>
+            </datalist>
+          </label>
+          <label>Job link
+            <input id="f-url" type="url" maxlength="500" autocomplete="off" placeholder="https://…">
+          </label>
+          <label>Date applied
+            <input id="f-date" type="date">
+          </label>
+          <label>Status
+            <select id="f-status">
+              <option value="wishlist">Wishlist</option>
+              <option value="applied" selected>Applied</option>
+              <option value="screening">Screening</option>
+              <option value="interview">Interview</option>
+              <option value="offer">Offer</option>
+              <option value="rejected">Rejected</option>
+              <option value="ghosted">Ghosted</option>
+            </select>
+          </label>
+          <label>Follow up by
+            <input id="f-followup" type="date">
+          </label>
+          <label class="full">Notes
+            <textarea id="f-notes" rows="3" maxlength="1000" placeholder="Contact name, test details, pay, anything to remember…"></textarea>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Save application</button>
+          <button class="btn" type="button" id="cancelFormBtn">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="filters">
+      <input id="search" type="search" placeholder="Search company, role, platform…" autocomplete="off" aria-label="Search applications">
+      <div class="chips" id="chips" role="group" aria-label="Filter by status"></div>
+      <label class="due-toggle"><input type="checkbox" id="dueOnly"> Follow-ups due only</label>
+    </section>
+
+    <section id="list" class="list" aria-live="polite"></section>
+
+    <footer class="data-actions">
+      <button class="btn" type="button" id="exportBtn">Export backup (.json)</button>
+      <button class="btn" type="button" id="importBtn">Import backup</button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+      <p class="fine">Backups are the only copy outside this browser — export one now and then, especially before clearing browser data.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
