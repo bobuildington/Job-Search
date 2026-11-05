@@ -7,8 +7,9 @@ Live at: https://bobuildington.github.io/jobsearch/
 
 ## What it does
 
-- Add applications: company, job title, platform/source, job link, date
-  applied, status, follow-up date, notes.
+- Add applications: company, job title, platform/source, phone, job link,
+  address, date applied, status, follow-up date, notes. The phone number
+  on a card is tap-to-call.
 - Statuses: Wishlist, Applied, Screening, Interview, Offer, Rejected,
   Ghosted. Change status right from the card — no need to open the form.
 - Search across company, role, platform, and notes. Filter by status or
@@ -32,3 +33,6 @@ first).
 - `styles.css` — light, phone-first styling
 - `app.js` — all tracker logic (localStorage key `job-tracker-v1`)
 - `manifest.json`, `icon.svg` — installable-app metadata and icon
+- `sw.js` — service worker caching the app shell so the tracker works
+  offline and can be installed as an app (bump `CACHE` in sw.js when
+  shipped files change, so installed copies pick up the new version)

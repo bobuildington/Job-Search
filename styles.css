@@ -118,6 +118,8 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--teal); outl
 .card .role { margin: 2px 0 0; font-size: 15px; }
 .card .meta { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
 .card .notes { margin: 8px 0 0; font-size: 14px; white-space: pre-wrap; }
+.card .contact { margin: 6px 0 0; font-size: 14px; }
+.card .contact a { color: var(--teal); font-weight: 600; }
 .card .link { margin: 8px 0 0; font-size: 14px; }
 .card .link a { color: var(--teal); font-weight: 600; word-break: break-all; }
 .card .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }

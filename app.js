@@ -81,7 +81,7 @@
     var q = filter.q.trim().toLowerCase();
     if (q) {
       list = list.filter(function (a) {
-        return [a.company, a.title, a.platform, a.notes].join(' ').toLowerCase().indexOf(q) !== -1;
+        return [a.company, a.title, a.platform, a.phone, a.address, a.notes].join(' ').toLowerCase().indexOf(q) !== -1;
       });
     }
     list.sort(function (a, b) {
@@ -127,6 +127,8 @@
     h += '<h3>' + esc(a.company) + '</h3>';
     h += '<p class="role">' + esc(a.title) + '</p>';
     if (meta.length) h += '<p class="meta">' + meta.join(' &middot; ') + '</p>';
+    if (a.phone) h += '<p class="contact"><a href="tel:' + esc(a.phone.replace(/[^+0-9]/g, '')) + '">' + esc(a.phone) + '</a></p>';
+    if (a.address) h += '<p class="contact">' + esc(a.address) + '</p>';
     if (a.notes) h += '<p class="notes">' + esc(a.notes) + '</p>';
     if (a.url) h += '<p class="link"><a href="' + esc(a.url) + '" target="_blank" rel="noopener">View job posting</a></p>';
     h += '<div class="row">';
@@ -164,7 +166,9 @@
     $('f-company').value = app ? app.company : '';
     $('f-title').value = app ? app.title : '';
     $('f-platform').value = app ? app.platform : '';
+    $('f-phone').value = app ? (app.phone || '') : '';
     $('f-url').value = app ? app.url : '';
+    $('f-address').value = app ? (app.address || '') : '';
     $('f-date').value = app ? (app.dateApplied || '') : todayStr();
     $('f-status').value = app ? app.status : 'applied';
     $('f-followup').value = app ? (app.followUp || '') : '';
@@ -197,7 +201,9 @@
       app.company = company;
       app.title = title;
       app.platform = $('f-platform').value.trim();
+      app.phone = $('f-phone').value.trim();
       app.url = $('f-url').value.trim();
+      app.address = $('f-address').value.trim();
       app.dateApplied = $('f-date').value || todayStr();
       app.status = $('f-status').value;
       app.followUp = $('f-followup').value || '';
@@ -209,7 +215,9 @@
         company: company,
         title: title,
         platform: $('f-platform').value.trim(),
+        phone: $('f-phone').value.trim(),
         url: $('f-url').value.trim(),
+        address: $('f-address').value.trim(),
         dateApplied: $('f-date').value || todayStr(),
         status: $('f-status').value,
         followUp: $('f-followup').value || '',
@@ -318,4 +326,10 @@
 
   load();
   render();
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () { /* offline copy optional */ });
+    });
+  }
 })();
